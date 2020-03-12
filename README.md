@@ -1,7 +1,7 @@
 # terraform-polkadot-gcp-asg-node
 
-[![open-issues](https://img.shields.io/github/issues-raw/insight-infrastructure/terraform-polkadot-gcp-asg-node?style=for-the-badge)](https://github.com/shinyfoil/terraform-polkadot-gcp-asg-node/issues)
-[![open-pr](https://img.shields.io/github/issues-pr-raw/insight-infrastructure/terraform-polkadot-gcp-asg-node?style=for-the-badge)](https://github.com/shinyfoil/terraform-polkadot-gcp-asg-node/pulls)
+[![open-issues](https://img.shields.io/github/issues-raw/insight-infrastructure/terraform-polkadot-gcp-asg-node?style=for-the-badge)](https://github.com/insight-infrastructure/terraform-polkadot-gcp-asg-node/issues)
+[![open-pr](https://img.shields.io/github/issues-pr-raw/insight-infrastructure/terraform-polkadot-gcp-asg-node?style=for-the-badge)](https://github.com/insight-infrastructure/terraform-polkadot-gcp-asg-node/pulls)
 
 ## Features
 
@@ -41,7 +41,7 @@ To run them:
 
 ## Authors
 
-Module managed by [Richard Mah](github.com/shinyfoil)
+Module managed by [Richard Mah](https://github.com/shinyfoil)
 
 ## Credits
 
