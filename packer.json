@@ -1,0 +1,48 @@
+{
+  "builders": [{
+    "type": "googlecompute",
+    "region": "us-east1",
+    "source_image_family": "ubuntu-minimal-1804-lts",
+    "image_name":  "sentry-{{timestamp}}",
+    "machine_type": "n1-standard-1",
+    "project_id": "{{user `project`}}",
+    "zone": "{{user `zone`}}",
+    "ssh_username": "{{user `ssh_user`}}",
+    "network": "{{user `network`}}",
+    "subnetwork": "{{user `subnet`}}"
+  }],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": [
+        "sudo apt-get update",
+        "echo here",
+        "sudo apt-get install -y ansible"
+      ]
+    },
+    {
+      "type": "ansible-local",
+      "playbook_file": "../terraform-polkadot-gcp-asg-node/ansible/main.yml",
+      "role_paths": [
+        "../terraform-polkadot-gcp-asg-node/ansible/common",
+        "../terraform-polkadot-gcp-asg-node/ansible/node-exporter",
+        "../terraform-polkadot-gcp-asg-node/ansible/polkadot-common",
+        "../terraform-polkadot-gcp-asg-node/ansible/polkadot-public"],
+      "extra_arguments": ["-e \"node_exporter_user={{user `node_exporter_user`}} \
+        node_exporter_password={{user `node_exporter_password`}} \
+        node_exporter_binary_url={{user `node_exporter_binary_url`}} \
+        node_exporter_binary_checksum={{user `node_exporter_binary_checksum`}}
+        polkadot_binary_url={{user `polkadot_binary_url`}} \
+        polkadot_binary_checksum={{user `polkadot_binary_checksum`}} \
+        polkadot_chain={{user `polkadot_chain`}} \
+        polkadot_restart_enabled={{user `polkadot_restart_enabled`}} \
+        polkadot_restart_minute={{user `polkadot_restart_minute`}} \
+        polkadot_restart_hour={{user `polkadot_restart_hour`}} \
+        polkadot_restart_day={{user `polkadot_restart_day`}} \
+        polkadot_restart_month={{user `polkadot_restart_month`}} \
+        polkadot_restart_weekday={{user `polkadot_restart_weekday`}} \
+        telemetryUrl={{user `telemetry_url`}} \
+        loggingFilter={{user `logging_filter`}}\""]
+    }
+  ]
+}

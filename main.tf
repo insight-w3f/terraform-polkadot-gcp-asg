@@ -46,3 +46,51 @@ module "packer" {
 output "cmd" {
   value = module.packer.packer_command
 }
+
+resource "google_compute_instance_template" "this" {
+  # tags = module.label.tags
+  labels = {
+    environment = module.label.environment,
+    namespace   = module.label.namespace,
+    stage       = module.label.stage
+  }
+
+  machine_type = var.instance_type
+  name_prefix  = var.node_name != "" ? "${var.node_name}-" : "sentry-"
+
+  service_account {
+    email  = var.security_group_id
+    scopes = ["cloud-platform"]
+  }
+
+  network_interface {
+    subnetwork = var.subnet_id
+  }
+
+  metadata = {
+    ssh-keys = "ubuntu:${file(var.public_key_path)}"
+  }
+
+  disk {
+    boot         = true
+    auto_delete  = true
+    disk_size_gb = var.root_volume_size
+    disk_type    = "pd-standard"
+    source_image = data.google_compute_image.ubuntu.self_link
+    type         = "PERSISTENT"
+  }
+
+  disk {
+    boot         = false
+    disk_size_gb = "375"
+    interface    = "NVME"
+    type         = "SCRATCH"
+    disk_type    = "local-ssd"
+  }
+}
+
+resource "google_compute_instance_group_manager" "this" {
+  base_instance_name = var.node_name
+  instance_template  = google_compute_instance_template.this.self_link
+  name               = var.node_name
+}
