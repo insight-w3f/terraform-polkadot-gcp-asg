@@ -19,14 +19,14 @@
 
 - name: download health check agent
   get_url:
-      url: 'https://github.com/gruntwork-io/health-checker/releases/latest'
+      url: 'https://github.com/gruntwork-io/health-checker/releases/download/v0.0.5/health-checker_linux_amd64'
       dest: /root/health_check/health_check_agent
       mode: '0700'
 
 - name: copy health check agent binary
   shell: |
     set -o pipefail
-    cp /root/health_check/agent /usr/local/bin/
+    cp /root/health_check/health_check_agent /usr/local/bin/
     chmod 755 /usr/local/bin/health_check_agent
     chown root:root /usr/local/bin/health_check_agent
   args:
@@ -34,9 +34,9 @@
   changed_when: False
 
 - name: check if health check script exists
-    stat:
-      path: /usr/local/bin/health_check_script.sh
-    register: health_script_exists
+  stat:
+    path: /usr/local/bin/health_check_script.sh
+  register: health_script_exists
 
 - name: create health check script
   template:
