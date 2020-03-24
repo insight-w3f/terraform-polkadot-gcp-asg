@@ -22,7 +22,7 @@ variable "stage" {
 variable "network_name" {
   description = "The network name, ie kusama / mainnet"
   type        = string
-  default     = ""
+  default     = "kusama"
 }
 
 variable "owner" {
@@ -40,16 +40,19 @@ variable "zone" {
 #########
 # Network
 #########
+variable "vpc_id" {
+  description = "The ID of the VPC"
+  type        = string
+}
+
 variable "subnet_id" {
   description = "The id of the subnet."
   type        = string
-  default     = ""
 }
 
 variable "security_group_id" {
   description = "The id of the security group to run in"
   type        = string
-  default     = ""
 }
 
 #####
@@ -58,7 +61,6 @@ variable "security_group_id" {
 variable "node_name" {
   description = "Name of the node"
   type        = string
-  default     = ""
 }
 
 variable "monitoring" {
@@ -110,12 +112,6 @@ variable "node_exporter_password" {
   description = "Password for node exporter"
   type        = string
   default     = "node_exporter_password"
-}
-
-variable "polkadot_chain" {
-  description = "Which Polkadot chain to join"
-  type        = string
-  default     = "kusama"
 }
 
 variable "project" {
