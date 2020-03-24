@@ -44,22 +44,22 @@ No issue is creating limit on this module.
 | logging\_filter | String for polkadot logging filter | `string` | `"sync=trace,afg=trace,babe=debug"` | no |
 | monitoring | Boolean for cloudwatch | `bool` | `false` | no |
 | namespace | The namespace to deploy into | `string` | `""` | no |
-| network\_name | The network name, ie kusama / mainnet | `string` | `""` | no |
+| network\_name | The network name, ie kusama / mainnet | `string` | `"kusama"` | no |
 | node\_exporter\_password | Password for node exporter | `string` | `"node_exporter_password"` | no |
 | node\_exporter\_user | User for node exporter | `string` | `"node_exporter_user"` | no |
-| node\_name | Name of the node | `string` | `""` | no |
+| node\_name | Name of the node | `string` | n/a | yes |
 | owner | Owner of the infrastructure | `string` | `""` | no |
-| polkadot\_chain | Which Polkadot chain to join | `string` | `"kusama"` | no |
 | project | Name of the project for node name | `string` | `"project"` | no |
 | public\_key\_path | The path to the public ssh key | `string` | `""` | no |
 | relay\_node\_ip | Internal IP of Polkadot relay node | `string` | n/a | yes |
 | relay\_node\_p2p\_address | P2P address of Polkadot relay node | `string` | n/a | yes |
 | root\_volume\_size | Root volume size | `string` | `0` | no |
-| security\_group\_id | The id of the security group to run in | `string` | `""` | no |
+| security\_group\_id | The id of the security group to run in | `string` | n/a | yes |
 | ssh\_user | Username for SSH | `string` | `"ubuntu"` | no |
 | stage | The stage of the deployment | `string` | `""` | no |
-| subnet\_id | The id of the subnet. | `string` | `""` | no |
+| subnet\_id | The id of the subnet. | `string` | n/a | yes |
 | telemetry\_url | WSS URL for telemetry | `string` | `"wss://mi.private.telemetry.backend/"` | no |
+| vpc\_id | The ID of the VPC | `string` | n/a | yes |
 | zone | The GCP zone to deploy in | `string` | `"us-east1-b"` | no |
 
 ## Outputs

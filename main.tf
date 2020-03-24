@@ -18,11 +18,12 @@ module "packer" {
   packer_config_path = "${path.module}/packer.json"
   timestamp_ui       = true
   vars = {
-    network : var.network_name,
+    module_path : path.module,
+    vpc : var.vpc_id,
     subnet : var.subnet_id,
     node_exporter_user : var.node_exporter_user,
     node_exporter_password : var.node_exporter_password,
-    polkadot_chain : var.polkadot_chain,
+    network_name : var.network_name,
     ssh_user : var.ssh_user,
     project : var.project,
     zone : var.zone,
@@ -91,6 +92,10 @@ resource "google_compute_instance_template" "this" {
 
 resource "google_compute_instance_group_manager" "this" {
   base_instance_name = var.node_name
-  instance_template  = google_compute_instance_template.this.self_link
-  name               = var.node_name
+  name               = "${var.node_name}-group-manager"
+
+  version {
+    instance_template = google_compute_instance_template.this.self_link
+    name              = var.node_name
+  }
 }
