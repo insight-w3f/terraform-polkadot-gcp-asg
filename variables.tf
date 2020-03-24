@@ -43,13 +43,11 @@ variable "zone" {
 variable "subnet_id" {
   description = "The id of the subnet."
   type        = string
-  default     = ""
 }
 
 variable "security_group_id" {
   description = "The id of the security group to run in"
   type        = string
-  default     = ""
 }
 
 #####
@@ -112,7 +110,7 @@ variable "node_exporter_password" {
   default     = "node_exporter_password"
 }
 
-variable "polkadot_chain" {
+variable "chain" {
   description = "Which Polkadot chain to join"
   type        = string
   default     = "kusama"
