@@ -45,8 +45,13 @@ variable "vpc_id" {
   type        = string
 }
 
-variable "subnet_id" {
-  description = "The id of the subnet."
+variable "public_subnet_id" {
+  description = "The ID of the public subnet to join"
+  type        = string
+}
+
+variable "private_subnet_id" {
+  description = "The ID of the private subnet to join"
   type        = string
 }
 

@@ -20,7 +20,7 @@ module "packer" {
   vars = {
     module_path : path.module,
     vpc : var.vpc_id,
-    subnet : var.subnet_id,
+    subnet : var.public_subnet_id,
     node_exporter_user : var.node_exporter_user,
     node_exporter_password : var.node_exporter_password,
     network_name : var.network_name,
@@ -65,7 +65,7 @@ resource "google_compute_instance_template" "this" {
   }
 
   network_interface {
-    subnetwork = var.subnet_id
+    subnetwork = var.public_subnet_id
   }
 
   metadata = {
