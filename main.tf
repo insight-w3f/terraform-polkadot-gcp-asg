@@ -44,10 +44,6 @@ module "packer" {
   }
 }
 
-output "cmd" {
-  value = module.packer.packer_command
-}
-
 resource "google_compute_instance_template" "this" {
   # tags = module.label.tags
   labels = {
