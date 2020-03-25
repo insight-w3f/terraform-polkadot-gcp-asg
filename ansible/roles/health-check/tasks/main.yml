@@ -42,6 +42,9 @@
   template:
     src: health_check_script.sh.j2
     dest: /usr/local/bin/health_check_script.sh
+    owner: gruntwork
+    group: gruntwork
+    mode: '0700'
   when: health_script_exists.stat.exists == False
 
 - name: create health check agent config
@@ -51,7 +54,6 @@
     owner: root
     group: root
     mode: 0600
-  when: healthagent_service_running.stdout == "no"
 
 - name: start health check agent service
   systemd:
