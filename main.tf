@@ -68,6 +68,20 @@ resource "google_compute_instance_template" "this" {
     ssh-keys = "ubuntu:${file(var.public_key_path)}"
   }
 
+  metadata_startup_script = <<-EOT
+    mkfs.ext4 -F /dev/nvme0n1
+    mkdir -p /mnt/disks/nvme
+    mount /dev/nvme0n1 /mnt/disks/nvme
+    chmod a+w /mnt/disks/nvme
+
+    systemctl stop polkadot
+    mkdir /mnt/disks/nvme/polkadot
+    chown polkadot:polkadot /mnt/disks/nvme/polkadot
+    mv /home/polkadot/.local/share/polkadot/chains /mnt/disks/nvme/polkadot/
+    ln -s /mnt/disks/nvme/polkadot /home/polkadot/.local/share/polkadot
+    systemctl start polkadot
+  EOT
+
   disk {
     boot         = true
     auto_delete  = true
