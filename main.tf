@@ -94,6 +94,8 @@ resource "google_compute_instance_group_manager" "this" {
   base_instance_name = var.node_name
   name               = "${var.node_name}-group-manager"
 
+  target_size = var.num_instances
+
   version {
     instance_template = google_compute_instance_template.this.self_link
     name              = var.node_name

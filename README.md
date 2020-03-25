@@ -48,6 +48,7 @@ No issue is creating limit on this module.
 | node\_exporter\_password | Password for node exporter | `string` | `"node_exporter_password"` | no |
 | node\_exporter\_user | User for node exporter | `string` | `"node_exporter_user"` | no |
 | node\_name | Name of the node | `string` | n/a | yes |
+| num\_instances | Number of instances for ASG | `number` | `1` | no |
 | owner | Owner of the infrastructure | `string` | `""` | no |
 | project | Name of the project for node name | `string` | `"project"` | no |
 | public\_key\_path | The path to the public ssh key | `string` | `""` | no |

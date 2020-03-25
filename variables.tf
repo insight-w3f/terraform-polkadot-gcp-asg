@@ -98,6 +98,13 @@ variable "key_name" {
   type        = string
   default     = ""
 }
+
+variable "num_instances" {
+  description = "Number of instances for ASG"
+  type        = number
+  default     = 1
+}
+
 #####
 # packer
 #####
