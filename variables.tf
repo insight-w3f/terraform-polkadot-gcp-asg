@@ -60,6 +60,12 @@ variable "security_group_id" {
   type        = string
 }
 
+variable "target_pool_id" {
+  description = "The ID of the target pool for the load balancer"
+  type        = string
+  default     = ""
+}
+
 #####
 # instance
 #####
@@ -108,6 +114,12 @@ variable "num_instances" {
   description = "Number of instances for ASG"
   type        = number
   default     = 1
+}
+
+variable "use_lb" {
+  description = "Boolean to enable use of load balancer"
+  type        = bool
+  default     = false
 }
 
 #####

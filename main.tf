@@ -106,6 +106,8 @@ resource "google_compute_instance_group_manager" "this" {
 
   target_size = var.num_instances
 
+  target_pools = var.use_lb ? [var.target_pool_id] : null
+
   version {
     instance_template = google_compute_instance_template.this.self_link
     name              = var.node_name
