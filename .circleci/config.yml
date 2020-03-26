@@ -7,12 +7,6 @@ jobs:
       - go/mod-download
       - go/save-cache
       - run:
-          name: install gcloud cli
-          command: |
-            curl https://sdk.cloud.google.com | bash
-            exec -l $SHELL
-            gcloud init
-      - run:
           command: |
             curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
             python get-pip.py
