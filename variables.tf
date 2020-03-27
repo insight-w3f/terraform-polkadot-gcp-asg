@@ -31,6 +31,12 @@ variable "owner" {
   default     = ""
 }
 
+variable "region" {
+  description = "The GCP region to deploy in"
+  type        = string
+  default     = "us-east1"
+}
+
 variable "zone" {
   description = "The GCP zone to deploy in"
   type        = string

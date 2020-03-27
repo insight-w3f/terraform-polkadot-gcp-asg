@@ -54,6 +54,7 @@ No issue is creating limit on this module.
 | project | Name of the project for node name | `string` | `"project"` | no |
 | public\_key\_path | The path to the public ssh key | `string` | `""` | no |
 | public\_subnet\_id | The ID of the public subnet to join | `string` | n/a | yes |
+| region | The GCP region to deploy in | `string` | `"us-east1"` | no |
 | relay\_node\_ip | Internal IP of Polkadot relay node | `string` | n/a | yes |
 | relay\_node\_p2p\_address | P2P address of Polkadot relay node | `string` | n/a | yes |
 | root\_volume\_size | Root volume size | `string` | `0` | no |

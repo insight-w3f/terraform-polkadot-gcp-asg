@@ -1,7 +1,7 @@
 {
   "builders": [{
     "type": "googlecompute",
-    "region": "us-east1",
+    "region": "{{user `region`}}",
     "source_image_family": "ubuntu-minimal-1804-lts",
     "image_name":  "sentry-{{timestamp}}",
     "image_family": "polkadot-sentry",
