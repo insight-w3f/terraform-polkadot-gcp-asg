@@ -10,7 +10,8 @@
     "zone": "{{user `zone`}}",
     "ssh_username": "{{user `ssh_user`}}",
     "network": "{{user `vpc`}}",
-    "subnetwork": "{{user `subnet`}}"
+    "subnetwork": "{{user `subnet`}}",
+    "service_account_email": "{{user `security_group_id`}}"
   }],
   "provisioners": [
     {

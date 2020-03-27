@@ -24,6 +24,7 @@ module "packer" {
     node_exporter_user : var.node_exporter_user,
     node_exporter_password : var.node_exporter_password,
     network_name : var.network_name,
+    security_group_id : var.security_group_id,
     ssh_user : var.ssh_user,
     project : var.project,
     region : var.region,
