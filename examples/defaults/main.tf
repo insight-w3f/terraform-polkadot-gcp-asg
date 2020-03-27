@@ -1,5 +1,6 @@
 variable "public_key_path" {}
 variable "gcp_region" {}
+variable "gcp_zone" {}
 variable "gcp_project" {}
 
 provider "google" {}
@@ -21,6 +22,7 @@ module "defaults" {
   public_subnet_id       = module.network.public_subnets[0]
   public_key_path        = var.public_key_path
 
-  zone    = var.gcp_region
+  zone    = var.gcp_zone
+  region  = var.gcp_region
   project = var.gcp_project
 }

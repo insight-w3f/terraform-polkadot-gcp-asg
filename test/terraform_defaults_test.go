@@ -17,6 +17,7 @@ func TestTerraformDefaults(t *testing.T) {
 
 	projectID := gcp.GetGoogleProjectIDFromEnvVar(t)
 	region := gcp.GetGoogleRegionFromEnvVar(t)
+	zone := gcp.GetRandomZoneForRegion(t, projectID, region)
 
 	cwd, err := os.Getwd()
 	if err != nil {
@@ -36,6 +37,7 @@ func TestTerraformDefaults(t *testing.T) {
 		Vars: map[string]interface{}{
 			"gcp_project": projectID,
 			"gcp_region": region,
+			"gcp_zone": zone,
 			"public_key_path": path.Join(fixturesDir, "./keys/id_rsa_test.pub"),
 		},
 	}
