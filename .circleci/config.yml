@@ -18,7 +18,7 @@ jobs:
             echo ${GOOGLE_CREDENTIALS} > ${HOME}/gcp-key.json
           name: Install Terraform
       - run:
-          command: go test ./.. -v -timeout 45m
+          command: go test ~/project/test -v -timeout 45m
           no_output_timeout: 45m
           name: "go test"
       - run:
