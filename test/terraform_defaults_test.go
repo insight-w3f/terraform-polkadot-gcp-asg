@@ -34,8 +34,6 @@ func TestTerraformDefaults(t *testing.T) {
 
 		// Variables to pass to our Terraform code using -var options
 		Vars: map[string]interface{}{
-			"gcp_project": projectID,
-			"gcp_region": region,
 			"public_key_path": path.Join(fixturesDir, "./keys/id_rsa_test.pub"),
 		},
 	}

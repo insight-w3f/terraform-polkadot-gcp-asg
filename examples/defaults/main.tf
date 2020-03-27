@@ -1,17 +1,6 @@
-variable "gcp_region" {
-  default = "us-east1"
-}
-
-variable "gcp_project" {
-  default = "project"
-}
-
 variable "public_key_path" {}
 
-provider "google" {
-  project = var.gcp_project
-  region  = var.gcp_region
-}
+provider "google" {}
 
 module "network" {
   source   = "github.com/insight-infrastructure/terraform-polkadot-gcp-network.git?ref=master"
