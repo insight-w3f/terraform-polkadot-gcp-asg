@@ -36,6 +36,7 @@ func TestTerraformDefaults(t *testing.T) {
 		Vars: map[string]interface{}{
 			"gcp_project": projectID,
 			"gcp_region": region,
+			"public_key_path": path.Join(fixturesDir, "./keys/id_rsa_test.pub"),
 		},
 	}
 
