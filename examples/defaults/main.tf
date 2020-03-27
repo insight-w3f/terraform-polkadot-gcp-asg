@@ -3,7 +3,11 @@ variable "gcp_region" {}
 variable "gcp_zone" {}
 variable "gcp_project" {}
 
-provider "google" {}
+provider "google" {
+  region  = var.gcp_region
+  zone    = var.gcp_zone
+  project = var.gcp_project
+}
 
 module "network" {
   source   = "github.com/insight-infrastructure/terraform-polkadot-gcp-network.git?ref=master"

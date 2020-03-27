@@ -105,9 +105,9 @@ resource "google_compute_instance_template" "this" {
 resource "google_compute_instance_group_manager" "this" {
   base_instance_name = var.node_name
   name               = "${var.node_name}-group-manager"
+  zone               = var.zone
 
-  target_size = var.num_instances
-
+  target_size  = var.num_instances
   target_pools = var.use_lb ? [var.target_pool_id] : null
 
   version {
