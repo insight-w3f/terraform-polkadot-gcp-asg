@@ -1,15 +1,17 @@
 {
   "builders": [{
     "type": "googlecompute",
-    "region": "us-east1",
+    "region": "{{user `region`}}",
     "source_image_family": "ubuntu-minimal-1804-lts",
     "image_name":  "sentry-{{timestamp}}",
+    "image_family": "polkadot-sentry",
     "machine_type": "n1-standard-1",
     "project_id": "{{user `project`}}",
     "zone": "{{user `zone`}}",
     "ssh_username": "{{user `ssh_user`}}",
     "network": "{{user `vpc`}}",
-    "subnetwork": "{{user `subnet`}}"
+    "subnetwork": "{{user `subnet`}}",
+    "service_account_email": "{{user `security_group_id`}}"
   }],
   "provisioners": [
     {

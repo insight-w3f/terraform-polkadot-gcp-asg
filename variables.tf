@@ -31,6 +31,12 @@ variable "owner" {
   default     = ""
 }
 
+variable "region" {
+  description = "The GCP region to deploy in"
+  type        = string
+  default     = "us-east1"
+}
+
 variable "zone" {
   description = "The GCP zone to deploy in"
   type        = string
@@ -45,14 +51,25 @@ variable "vpc_id" {
   type        = string
 }
 
-variable "subnet_id" {
-  description = "The id of the subnet."
+variable "public_subnet_id" {
+  description = "The ID of the public subnet to join"
+  type        = string
+}
+
+variable "private_subnet_id" {
+  description = "The ID of the private subnet to join"
   type        = string
 }
 
 variable "security_group_id" {
   description = "The id of the security group to run in"
   type        = string
+}
+
+variable "target_pool_id" {
+  description = "The ID of the target pool for the load balancer"
+  type        = string
+  default     = ""
 }
 
 #####
@@ -98,6 +115,19 @@ variable "key_name" {
   type        = string
   default     = ""
 }
+
+variable "num_instances" {
+  description = "Number of instances for ASG"
+  type        = number
+  default     = 1
+}
+
+variable "use_lb" {
+  description = "Boolean to enable use of load balancer"
+  type        = bool
+  default     = false
+}
+
 #####
 # packer
 #####

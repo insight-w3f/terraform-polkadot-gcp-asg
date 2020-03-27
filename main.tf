@@ -20,12 +20,14 @@ module "packer" {
   vars = {
     module_path : path.module,
     vpc : var.vpc_id,
-    subnet : var.subnet_id,
+    subnet : var.public_subnet_id,
     node_exporter_user : var.node_exporter_user,
     node_exporter_password : var.node_exporter_password,
     network_name : var.network_name,
+    security_group_id : var.security_group_id,
     ssh_user : var.ssh_user,
     project : var.project,
+    region : var.region,
     zone : var.zone,
     polkadot_binary_url : "https://github.com/w3f/polkadot/releases/download/v0.7.21/polkadot",
     polkadot_binary_checksum : "sha256:af561dc3447e8e6723413cbeed0e5b1f0f38cffaa408696a57541897bf97a34d",
@@ -42,10 +44,6 @@ module "packer" {
     relay_ip_address : var.relay_node_ip,
     relay_p2p_address : var.relay_node_p2p_address
   }
-}
-
-output "cmd" {
-  value = module.packer.packer_command
 }
 
 resource "google_compute_instance_template" "this" {
@@ -65,12 +63,26 @@ resource "google_compute_instance_template" "this" {
   }
 
   network_interface {
-    subnetwork = var.subnet_id
+    subnetwork = var.public_subnet_id
   }
 
   metadata = {
     ssh-keys = "ubuntu:${file(var.public_key_path)}"
   }
+
+  metadata_startup_script = <<-EOT
+    mkfs.ext4 -F /dev/nvme0n1
+    mkdir -p /mnt/disks/nvme
+    mount /dev/nvme0n1 /mnt/disks/nvme
+    chmod a+w /mnt/disks/nvme
+
+    systemctl stop polkadot
+    mkdir /mnt/disks/nvme/polkadot
+    chown polkadot:polkadot /mnt/disks/nvme/polkadot
+    mv /home/polkadot/.local/share/polkadot/chains /mnt/disks/nvme/polkadot/
+    ln -s /mnt/disks/nvme/polkadot /home/polkadot/.local/share/polkadot
+    systemctl start polkadot
+  EOT
 
   disk {
     boot         = true
@@ -93,6 +105,10 @@ resource "google_compute_instance_template" "this" {
 resource "google_compute_instance_group_manager" "this" {
   base_instance_name = var.node_name
   name               = "${var.node_name}-group-manager"
+  zone               = var.zone
+
+  target_size  = var.num_instances
+  target_pools = var.use_lb ? [var.target_pool_id] : null
 
   version {
     instance_template = google_compute_instance_template.this.self_link
