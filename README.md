@@ -1,7 +1,9 @@
-# terraform-polkadot-gcp-asg-node
+# terraform-polkadot-gcp-asg
 
-[![open-issues](https://img.shields.io/github/issues-raw/insight-w3f/terraform-polkadot-gcp-asg-node?style=for-the-badge)](https://github.com/insight-w3f/terraform-polkadot-gcp-asg-node/issues)
-[![open-pr](https://img.shields.io/github/issues-pr-raw/insight-w3f/terraform-polkadot-gcp-asg-node?style=for-the-badge)](https://github.com/insight-w3f/terraform-polkadot-gcp-asg-node/pulls)
+[![open-issues](https://img.shields.io/github/issues-raw/insight-w3f/terraform-polkadot-gcp-asg?style=for-the-badge)](https://github.com/insight-w3f/terraform-polkadot-gcp-asg/issues)
+[![open-pr](https://img.shields.io/github/issues-pr-raw/insight-w3f/terraform-polkadot-gcp-asg?style=for-the-badge)](https://github.com/insight-w3f/terraform-polkadot-gcp-asg/pulls)
+[![build-status](https://circleci.com/gh/insight-w3f/terraform-polkadot-gcp-asg.svg?style=svg)](https://circleci.com/gh/insight-w3f/terraform-polkadot-gcp-asg)
+
 
 ## Features
 
@@ -40,7 +42,7 @@ module "defaults" {
 
 ## Examples
 
-- [defaults](https://github.com/insight-w3f/terraform-polkadot-gcp-asg-node/tree/master/examples/defaults)
+- [defaults](https://github.com/insight-w3f/terraform-polkadot-gcp-asg/tree/master/examples/defaults)
 
 ## Known  Issues
 No issue is creating limit on this module.
