@@ -37,4 +37,4 @@ workflows:
   default:
     jobs:
       - test:
-          context: gcp-polkadot-testing
+          context: gcp-ci-1
