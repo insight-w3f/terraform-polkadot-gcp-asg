@@ -80,7 +80,7 @@ resource "google_compute_instance_template" "this" {
     mkdir /mnt/disks/nvme/polkadot
     chown polkadot:polkadot /mnt/disks/nvme/polkadot
     mv /home/polkadot/.local/share/polkadot/chains /mnt/disks/nvme/polkadot/
-    ln -s /mnt/disks/nvme/polkadot /home/polkadot/.local/share/polkadot
+    ln -s /mnt/disks/nvme/polkadot /home/polkadot/.local/share
     systemctl start polkadot
   EOT
 
