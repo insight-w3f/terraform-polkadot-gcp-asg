@@ -10,7 +10,7 @@ provider "google" {
 }
 
 module "network" {
-  source   = "github.com/insight-infrastructure/terraform-polkadot-gcp-network.git?ref=master"
+  source   = "github.com/insight-w3f/terraform-polkadot-gcp-network.git?ref=master"
   vpc_name = "cci-test"
 }
 
