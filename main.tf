@@ -89,7 +89,7 @@ resource "google_compute_instance_template" "this" {
     auto_delete  = true
     disk_size_gb = var.root_volume_size
     disk_type    = "pd-standard"
-    source_image = data.google_compute_image.ubuntu.self_link
+    source_image = data.google_compute_image.packer.self_link
     type         = "PERSISTENT"
   }
 
