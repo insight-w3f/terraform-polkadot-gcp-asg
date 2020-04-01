@@ -122,6 +122,24 @@ variable "num_instances" {
   default     = 1
 }
 
+variable "autoscale_enabled" {
+  description = "Do you want to use autoscaling?"
+  type        = bool
+  default     = false
+}
+
+variable "min_instances" {
+  description = "If autoscaling enabled; the minimum number of instances"
+  type        = number
+  default     = 1
+}
+
+variable "max_instances" {
+  description = "If autoscaling enabled; the maxiumum number of instances"
+  type        = number
+  default     = 1
+}
+
 variable "use_lb" {
   description = "Boolean to enable use of load balancer"
   type        = bool

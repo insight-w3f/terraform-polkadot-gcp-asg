@@ -10,8 +10,9 @@ provider "google" {
 }
 
 module "network" {
-  source   = "github.com/insight-w3f/terraform-polkadot-gcp-network.git?ref=master"
   vpc_name = "cci-test"
+  project  = var.gcp_project
+  region   = var.gcp_region
 }
 
 module "defaults" {
@@ -26,6 +27,8 @@ module "defaults" {
   public_subnet_id       = module.network.public_subnets[0]
   public_key_path        = var.public_key_path
   use_lb                 = false
+  autoscale_enabled      = true
+  max_instances          = 3
 
   zone    = var.gcp_zone
   region  = var.gcp_region
