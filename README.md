@@ -62,11 +62,14 @@ No requirements.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| autoscale\_enabled | Do you want to use autoscaling? | `bool` | `false` | no |
 | create\_eip | Boolean to create elastic IP | `bool` | `false` | no |
 | environment | The environment | `string` | `""` | no |
 | instance\_type | Instance type | `string` | `"n1-standard-1"` | no |
 | key\_name | The name of the preexisting key to be used instead of the local public\_key\_path | `string` | `""` | no |
 | logging\_filter | String for polkadot logging filter | `string` | `"sync=trace,afg=trace,babe=debug"` | no |
+| max\_instances | If autoscaling enabled; the maxiumum number of instances | `number` | `1` | no |
+| min\_instances | If autoscaling enabled; the minimum number of instances | `number` | `1` | no |
 | monitoring | Boolean for cloudwatch | `bool` | `false` | no |
 | namespace | The namespace to deploy into | `string` | `""` | no |
 | network\_name | The network name, ie kusama / mainnet | `string` | `"kusama"` | no |

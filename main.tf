@@ -102,16 +102,19 @@ resource "google_compute_instance_template" "this" {
   }
 }
 
-resource "google_compute_instance_group_manager" "this" {
-  base_instance_name = var.node_name
-  name               = "${var.node_name}-group-manager"
-  zone               = var.zone
+module "asg" {
+  source  = "terraform-google-modules/vm/google//modules/mig"
+  version = "2.1.0"
 
-  target_size  = var.num_instances
+  instance_template = google_compute_instance_template.this.self_link
+  region            = var.region
+
+  autoscaling_enabled = var.autoscale_enabled
+  min_replicas        = var.autoscale_enabled ? var.min_instances : null
+  max_replicas        = var.autoscale_enabled ? var.max_instances : null
+  target_size         = var.autoscale_enabled ? null : var.num_instances
+
+  network      = var.network_name
+  subnetwork   = var.public_subnet_id
   target_pools = var.use_lb ? [var.target_pool_id] : null
-
-  version {
-    instance_template = google_compute_instance_template.this.self_link
-    name              = var.node_name
-  }
 }
