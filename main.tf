@@ -13,7 +13,7 @@ module "label" {
 }
 
 module "packer" {
-  source = "github.com/insight-w3f/terraform-aws-packer-ami.git"
+  source = "github.com/insight-infrastructure/terraform-packer-build.git"
 
   packer_config_path = "${path.module}/packer.json"
   timestamp_ui       = true
