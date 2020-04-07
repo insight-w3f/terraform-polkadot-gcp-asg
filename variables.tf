@@ -47,7 +47,7 @@ variable "zone" {
 # Network
 #########
 variable "vpc_id" {
-  description = "The ID of the VPC"
+  description = "The ID of the public VPC"
   type        = string
 }
 

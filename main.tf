@@ -72,6 +72,10 @@ resource "google_compute_instance_template" "this" {
     subnetwork = var.public_subnet_id
   }
 
+  network_interface {
+    subnetwork = var.private_subnet_id
+  }
+
   metadata = {
     ssh-keys = "ubuntu:${file(var.public_key_path)}"
   }
@@ -108,7 +112,5 @@ module "asg" {
   max_replicas        = var.autoscale_enabled ? var.max_instances : null
   target_size         = var.autoscale_enabled ? null : var.num_instances
 
-  network      = var.network_name
-  subnetwork   = var.public_subnet_id
   target_pools = var.use_lb ? [var.target_pool_id] : null
 }
