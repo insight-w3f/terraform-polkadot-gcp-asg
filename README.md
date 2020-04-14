@@ -100,6 +100,7 @@ No requirements.
 | Name | Description |
 |------|-------------|
 | cmd | n/a |
+| instance\_group\_id | n/a |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
