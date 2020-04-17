@@ -140,8 +140,8 @@ variable "max_instances" {
   default     = 1
 }
 
-variable "use_lb" {
-  description = "Boolean to enable use of load balancer"
+variable "use_external_lb" {
+  description = "Boolean to enable use of external load balancer"
   type        = bool
   default     = false
 }

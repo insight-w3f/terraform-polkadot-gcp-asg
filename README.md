@@ -91,7 +91,7 @@ No requirements.
 | stage | The stage of the deployment | `string` | `""` | no |
 | target\_pool\_id | The ID of the target pool for the load balancer | `string` | `""` | no |
 | telemetry\_url | WSS URL for telemetry | `string` | `"wss://mi.private.telemetry.backend/"` | no |
-| use\_lb | Boolean to enable use of load balancer | `bool` | `false` | no |
+| use\_external\_lb | Boolean to enable use of external load balancer | `bool` | `false` | no |
 | vpc\_id | The ID of the public VPC | `string` | n/a | yes |
 | zone | The GCP zone to deploy in | `string` | `"us-east1-b"` | no |
 
