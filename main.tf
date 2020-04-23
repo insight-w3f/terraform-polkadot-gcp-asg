@@ -12,6 +12,16 @@ module "label" {
   stage       = var.stage
 }
 
+resource "null_resource" "requirements" {
+  triggers = {
+    time = timestamp()
+  }
+
+  provisioner "local-exec" {
+    command = "ansible-galaxy install -r ${path.module}/ansible/requirements.yml"
+  }
+}
+
 module "packer" {
   source = "github.com/insight-infrastructure/terraform-packer-build.git"
 
