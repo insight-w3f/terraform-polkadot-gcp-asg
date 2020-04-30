@@ -38,6 +38,7 @@ module "packer" {
     ssh_user : var.ssh_user,
     project : var.project,
     region : var.region,
+    consul_datacenter : var.region,
     zone : var.zone,
     polkadot_binary_url : "https://github.com/w3f/polkadot/releases/download/v0.7.21/polkadot",
     polkadot_binary_checksum : "sha256:af561dc3447e8e6723413cbeed0e5b1f0f38cffaa408696a57541897bf97a34d",
@@ -52,14 +53,22 @@ module "packer" {
     telemetry_url : var.telemetry_url,
     logging_filter : var.logging_filter,
     relay_ip_address : var.relay_node_ip,
-    relay_p2p_address : var.relay_node_p2p_address
+    relay_p2p_address : var.relay_node_p2p_address,
+    consul_enabled : var.consul_enabled,
+    prometheus_enabled : var.prometheus_enabled,
+    retry_join : "\"provider=gce tag_value=gke-${var.cluster_name}\""
+
   }
 }
 
 module "user_data" {
-  source         = "github.com/insight-w3f/terraform-polkadot-user-data.git?ref=master"
-  cloud_provider = "gcp"
-  type           = "library"
+  source              = "github.com/insight-w3f/terraform-polkadot-user-data.git?ref=master"
+  cloud_provider      = "gcp"
+  type                = "library"
+  consul_enabled      = var.consul_enabled
+  prometheus_enabled  = var.prometheus_enabled
+  prometheus_user     = var.node_exporter_user
+  prometheus_password = var.node_exporter_password
 }
 
 resource "google_compute_instance_template" "this" {

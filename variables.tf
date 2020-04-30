@@ -195,3 +195,21 @@ variable "relay_node_p2p_address" {
   description = "P2P address of Polkadot relay node"
   type        = string
 }
+
+variable "consul_enabled" {
+  description = "Bool to use when Consul is enabled"
+  type        = bool
+  default     = false
+}
+
+variable "prometheus_enabled" {
+  description = "Bool to use when Prometheus is enabled"
+  type        = bool
+  default     = false
+}
+
+variable "cluster_name" {
+  description = "The name of the k8s cluster"
+  type        = string
+  default     = ""
+}

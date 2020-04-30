@@ -64,6 +64,8 @@ No requirements.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | autoscale\_enabled | Do you want to use autoscaling? | `bool` | `false` | no |
+| cluster\_name | The name of the k8s cluster | `string` | `""` | no |
+| consul\_enabled | Bool to use when Consul is enabled | `bool` | `false` | no |
 | create\_eip | Boolean to create elastic IP | `bool` | `false` | no |
 | environment | The environment | `string` | `""` | no |
 | instance\_type | Instance type | `string` | `"n1-standard-1"` | no |
@@ -81,6 +83,7 @@ No requirements.
 | owner | Owner of the infrastructure | `string` | `""` | no |
 | private\_subnet\_id | The ID of the private subnet to join | `string` | n/a | yes |
 | project | Name of the project for node name | `string` | `"project"` | no |
+| prometheus\_enabled | Bool to use when Prometheus is enabled | `bool` | `false` | no |
 | public\_key\_path | The path to the public ssh key | `string` | `""` | no |
 | public\_subnet\_id | The ID of the public subnet to join | `string` | n/a | yes |
 | region | The GCP region to deploy in | `string` | `"us-east1"` | no |
