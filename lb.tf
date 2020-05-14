@@ -10,12 +10,12 @@ resource "google_compute_target_pool" "this" {
   count = var.use_lb && var.use_external_lb ? 1 : 0
   name  = "rpc-target"
 
-  health_checks = [google_compute_health_check.rpc-hc.self_link]
+  health_checks = [google_compute_health_check.rpc-hc.*.self_link]
 }
 
 resource "google_compute_region_backend_service" "this" {
   count         = var.use_lb && var.use_external_lb ? 0 : 1
-  health_checks = [google_compute_health_check.rpc-hc.self_link]
+  health_checks = [google_compute_health_check.rpc-hc.*.self_link]
   name          = "rpc-target"
   region        = var.region
   backend {
