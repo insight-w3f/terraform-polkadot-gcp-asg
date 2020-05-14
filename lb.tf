@@ -1,5 +1,5 @@
 resource "google_compute_health_check" "rpc-hc" {
-  count = var.use_lb
+  count = var.use_lb ? 1 : 0
   name  = "rpc-health"
   http_health_check {
     port = "5500"
