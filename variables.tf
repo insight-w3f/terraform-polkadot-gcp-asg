@@ -66,11 +66,28 @@ variable "security_group_id" {
   type        = string
 }
 
-variable "target_pool_id" {
-  description = "The ID of the target pool for the load balancer"
+#####
+# Load Balancer
+#####
+
+variable "lb_name" {
+  description = "Name of the load balancer"
   type        = string
-  default     = ""
+  default     = "lb"
 }
+
+variable "use_lb" {
+  description = "Boolean to enable the use of a load balancer"
+  type        = bool
+  default     = false
+}
+
+variable "use_external_lb" {
+  description = "Boolean to enable use of external load balancer"
+  type        = bool
+  default     = false
+}
+
 
 #####
 # instance
@@ -138,12 +155,6 @@ variable "max_instances" {
   description = "If autoscaling enabled; the maxiumum number of instances"
   type        = number
   default     = 1
-}
-
-variable "use_external_lb" {
-  description = "Boolean to enable use of external load balancer"
-  type        = bool
-  default     = false
 }
 
 #####

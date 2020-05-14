@@ -57,6 +57,7 @@ No requirements.
 | Name | Version |
 |------|---------|
 | google | n/a |
+| google-beta | n/a |
 | null | n/a |
 
 ## Inputs
@@ -70,6 +71,7 @@ No requirements.
 | environment | The environment | `string` | `""` | no |
 | instance\_type | Instance type | `string` | `"n1-standard-1"` | no |
 | key\_name | The name of the preexisting key to be used instead of the local public\_key\_path | `string` | `""` | no |
+| lb\_name | Name of the load balancer | `string` | `"lb"` | no |
 | logging\_filter | String for polkadot logging filter | `string` | `"sync=trace,afg=trace,babe=debug"` | no |
 | max\_instances | If autoscaling enabled; the maxiumum number of instances | `number` | `1` | no |
 | min\_instances | If autoscaling enabled; the minimum number of instances | `number` | `1` | no |
@@ -93,9 +95,9 @@ No requirements.
 | security\_group\_id | The id of the security group to run in | `string` | n/a | yes |
 | ssh\_user | Username for SSH | `string` | `"ubuntu"` | no |
 | stage | The stage of the deployment | `string` | `""` | no |
-| target\_pool\_id | The ID of the target pool for the load balancer | `string` | `""` | no |
 | telemetry\_url | WSS URL for telemetry | `string` | `"wss://mi.private.telemetry.backend/"` | no |
 | use\_external\_lb | Boolean to enable use of external load balancer | `bool` | `false` | no |
+| use\_lb | Boolean to enable the use of a load balancer | `bool` | `false` | no |
 | vpc\_id | The ID of the public VPC | `string` | n/a | yes |
 | zone | The GCP zone to deploy in | `string` | `"us-east1-b"` | no |
 
@@ -105,6 +107,8 @@ No requirements.
 |------|-------------|
 | cmd | n/a |
 | instance\_group\_id | n/a |
+| lb\_endpoint | n/a |
+| target\_pool\_id | n/a |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
