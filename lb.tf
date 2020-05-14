@@ -14,7 +14,7 @@ resource "google_compute_target_pool" "this" {
 }
 
 resource "google_compute_region_backend_service" "this" {
-  count         = var.use_lb && var.use_external_lb ? 0 : 1
+  count         = var.use_lb && ! var.use_external_lb ? 1 : 0
   health_checks = [google_compute_health_check.rpc-hc.*.self_link]
   name          = "rpc-target"
   region        = var.region
@@ -35,7 +35,7 @@ resource "google_compute_forwarding_rule" "external" {
 }
 
 resource "google_compute_forwarding_rule" "internal" {
-  count    = var.use_lb && var.use_external_lb ? 0 : 1
+  count    = var.use_lb && ! var.use_external_lb ? 1 : 0
   provider = google-beta
 
   name                  = var.lb_name
