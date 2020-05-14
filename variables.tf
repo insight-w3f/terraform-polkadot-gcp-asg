@@ -73,6 +73,29 @@ variable "target_pool_id" {
 }
 
 #####
+# Load Balancer
+#####
+
+variable "lb_name" {
+  description = "Name of the load balancer"
+  type        = string
+  default     = "lb"
+}
+
+variable "use_lb" {
+  description = "Boolean to enable the use of a load balancer"
+  type        = bool
+  default     = false
+}
+
+variable "use_external_lb" {
+  description = "Boolean to enable use of external load balancer"
+  type        = bool
+  default     = false
+}
+
+
+#####
 # instance
 #####
 variable "node_name" {
@@ -138,12 +161,6 @@ variable "max_instances" {
   description = "If autoscaling enabled; the maxiumum number of instances"
   type        = number
   default     = 1
-}
-
-variable "use_external_lb" {
-  description = "Boolean to enable use of external load balancer"
-  type        = bool
-  default     = false
 }
 
 #####
