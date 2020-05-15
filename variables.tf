@@ -121,16 +121,9 @@ variable "instance_type" {
   default     = "n1-standard-1"
 }
 
-variable "public_key_path" {
-  description = "The path to the public ssh key"
+variable "public_key" {
+  description = "The public ssh key"
   type        = string
-  default     = ""
-}
-
-variable "key_name" {
-  description = "The name of the preexisting key to be used instead of the local public_key_path"
-  type        = string
-  default     = ""
 }
 
 variable "num_instances" {
@@ -160,6 +153,30 @@ variable "max_instances" {
 #####
 # packer
 #####
+
+variable "polkadot_client_url" {
+  description = "URL to Polkadot client binary"
+  type        = string
+  default     = "https://github.com/w3f/polkadot/releases/download/v0.7.32/polkadot"
+}
+
+variable "polkadot_client_hash" {
+  description = "SHA256 hash of Polkadot client binary"
+  type        = string
+  default     = "c34d63e5d80994b2123a3a0b7c5a81ce8dc0f257ee72064bf06654c2b93e31c9"
+}
+
+variable "node_exporter_url" {
+  description = "URL to Node Exporter binary"
+  type        = string
+  default     = "https://github.com/prometheus/node_exporter/releases/download/v0.18.1/node_exporter-0.18.1.linux-amd64.tar.gz"
+}
+
+variable "node_exporter_hash" {
+  description = "SHA256 hash of Node Exporter binary"
+  type        = string
+  default     = "b2503fd932f85f4e5baf161268854bf5d22001869b84f00fd2d1f57b51b72424"
+}
 
 variable "node_exporter_user" {
   description = "User for node exporter"
@@ -200,11 +217,13 @@ variable "logging_filter" {
 variable "relay_node_ip" {
   description = "Internal IP of Polkadot relay node"
   type        = string
+  default     = ""
 }
 
 variable "relay_node_p2p_address" {
   description = "P2P address of Polkadot relay node"
   type        = string
+  default     = ""
 }
 
 variable "consul_enabled" {

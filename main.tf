@@ -40,10 +40,10 @@ module "packer" {
     region : var.region,
     consul_datacenter : var.region,
     zone : var.zone,
-    polkadot_binary_url : "https://github.com/w3f/polkadot/releases/download/v0.7.21/polkadot",
-    polkadot_binary_checksum : "sha256:af561dc3447e8e6723413cbeed0e5b1f0f38cffaa408696a57541897bf97a34d",
-    node_exporter_binary_url : "https://github.com/prometheus/node_exporter/releases/download/v0.18.1/node_exporter-0.18.1.linux-amd64.tar.gz",
-    node_exporter_binary_checksum : "sha256:b2503fd932f85f4e5baf161268854bf5d22001869b84f00fd2d1f57b51b72424",
+    polkadot_binary_url : var.polkadot_client_url,
+    polkadot_binary_checksum : "sha256:${var.polkadot_client_hash}",
+    node_exporter_binary_url : var.node_exporter_url,
+    node_exporter_binary_checksum : "sha256:${var.node_exporter_hash}",
     polkadot_restart_enabled : true,
     polkadot_restart_minute : "50",
     polkadot_restart_hour : "10",
@@ -96,7 +96,7 @@ resource "google_compute_instance_template" "this" {
   }
 
   metadata = {
-    ssh-keys = "ubuntu:${file(var.public_key_path)}"
+    ssh-keys = "ubuntu:${var.public_key}"
   }
 
   metadata_startup_script = module.user_data.user_data
