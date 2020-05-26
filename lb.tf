@@ -1,7 +1,15 @@
 resource "google_compute_http_health_check" "rpc-hc" {
-  count = var.use_lb ? 1 : 0
+  count = var.use_lb && var.use_external_lb ? 1 : 0
   name  = "rpc-health"
   port  = 5500
+}
+
+resource "google_compute_health_check" "rpc-hc" {
+  count = var.use_lb && ! var.use_external_lb ? 1 : 0
+  name  = "rpc-health"
+  http_health_check {
+    port = "5500"
+  }
 }
 
 resource "google_compute_target_pool" "this" {
@@ -13,7 +21,7 @@ resource "google_compute_target_pool" "this" {
 
 resource "google_compute_region_backend_service" "this" {
   count         = var.use_lb && ! var.use_external_lb ? 1 : 0
-  health_checks = [join(",", google_compute_http_health_check.rpc-hc.*.self_link)]
+  health_checks = [join(",", google_compute_health_check.rpc-hc.*.self_link)]
   name          = "rpc-target"
   region        = var.region
   backend {
