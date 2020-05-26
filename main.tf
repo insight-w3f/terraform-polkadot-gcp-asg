@@ -89,6 +89,9 @@ resource "google_compute_instance_template" "this" {
 
   network_interface {
     subnetwork = var.public_subnet_id
+    access_config {
+
+    }
   }
 
   network_interface {

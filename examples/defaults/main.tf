@@ -26,7 +26,7 @@ module "defaults" {
   network_name           = "dev"
   private_subnet_id      = module.network.private_subnets[0]
   public_subnet_id       = module.network.public_subnets[0]
-  public_key_path        = var.public_key_path
+  public_key             = file(var.public_key_path)
   autoscale_enabled      = true
   max_instances          = 3
 
