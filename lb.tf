@@ -31,7 +31,7 @@ resource "google_compute_forwarding_rule" "external" {
   target                = google_compute_target_pool.this[0].self_link
   load_balancing_scheme = "EXTERNAL"
   ip_protocol           = "TCP"
-  port_range            = "9933"
+  port_range            = "9933, 9944"
 }
 
 resource "google_compute_forwarding_rule" "internal" {
