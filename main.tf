@@ -134,5 +134,7 @@ module "asg" {
   max_replicas        = var.autoscale_enabled ? var.max_instances : null
   target_size         = var.autoscale_enabled ? null : var.num_instances
 
+  autoscaling_cpu = [{ target = 0.8 }]
+
   target_pools = var.use_external_lb ? [join(",", google_compute_target_pool.this.*.self_link)] : null
 }
