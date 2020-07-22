@@ -1,3 +1,7 @@
+locals {
+  public_key = var.public_key_path != "" ? file(var.public_key_path) : var.public_key
+}
+
 resource "null_resource" "requirements" {
   triggers = {
     time = timestamp()
@@ -84,7 +88,7 @@ resource "google_compute_instance_template" "this" {
   }
 
   metadata = {
-    ssh-keys = "ubuntu:${var.public_key}"
+    ssh-keys = "ubuntu:${local.public_key}"
   }
 
   metadata_startup_script = module.user_data.user_data

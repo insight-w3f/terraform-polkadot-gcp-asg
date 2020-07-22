@@ -89,7 +89,8 @@ No requirements.
 | private\_subnet\_id | The ID of the private subnet to join | `string` | n/a | yes |
 | project | Name of the project for node name | `string` | `"project"` | no |
 | prometheus\_enabled | Bool to use when Prometheus is enabled | `bool` | `false` | no |
-| public\_key | The public ssh key | `string` | n/a | yes |
+| public\_key | The public ssh key | `string` | `""` | no |
+| public\_key\_path | A path to the public key | `string` | `""` | no |
 | public\_subnet\_id | The ID of the public subnet to join | `string` | n/a | yes |
 | region | The GCP region to deploy in | `string` | `"us-east1"` | no |
 | relay\_node\_ip | Internal IP of Polkadot relay node | `string` | `""` | no |
