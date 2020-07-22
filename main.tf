@@ -1,17 +1,3 @@
-module "label" {
-  source = "github.com/robc-io/terraform-null-label.git?ref=0.16.1"
-  tags = {
-    NetworkName = var.network_name
-    Owner       = var.owner
-    Terraform   = true
-    VpcType     = "main"
-  }
-
-  environment = var.environment
-  namespace   = var.namespace
-  stage       = var.stage
-}
-
 resource "null_resource" "requirements" {
   triggers = {
     time = timestamp()
@@ -72,11 +58,10 @@ module "user_data" {
 }
 
 resource "google_compute_instance_template" "this" {
-  # tags = module.label.tags
   labels = {
-    environment = module.label.environment,
-    namespace   = module.label.namespace,
-    stage       = module.label.stage
+    environment = var.environment,
+    namespace   = var.namespace,
+    stage       = var.stage
   }
 
   machine_type = var.instance_type
