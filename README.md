@@ -94,7 +94,7 @@ No requirements.
 | region | The GCP region to deploy in | `string` | `"us-east1"` | no |
 | relay\_node\_ip | Internal IP of Polkadot relay node | `string` | `""` | no |
 | relay\_node\_p2p\_address | P2P address of Polkadot relay node | `string` | `""` | no |
-| root\_volume\_size | Root volume size | `string` | `0` | no |
+| root\_volume\_size | Root volume size | `string` | `"0"` | no |
 | security\_group\_id | The id of the security group to run in | `string` | n/a | yes |
 | ssh\_user | Username for SSH | `string` | `"ubuntu"` | no |
 | stage | The stage of the deployment | `string` | `""` | no |

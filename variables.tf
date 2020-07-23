@@ -112,7 +112,7 @@ variable "create_eip" {
 variable "root_volume_size" {
   description = "Root volume size"
   type        = string
-  default     = 0
+  default     = "0"
 }
 
 variable "instance_type" {
