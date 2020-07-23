@@ -1,15 +1,5 @@
-module "label" {
-  source = "github.com/robc-io/terraform-null-label.git?ref=0.16.1"
-  tags = {
-    NetworkName = var.network_name
-    Owner       = var.owner
-    Terraform   = true
-    VpcType     = "main"
-  }
-
-  environment = var.environment
-  namespace   = var.namespace
-  stage       = var.stage
+locals {
+  public_key = var.public_key_path != "" ? file(var.public_key_path) : var.public_key
 }
 
 resource "null_resource" "requirements" {
@@ -72,11 +62,10 @@ module "user_data" {
 }
 
 resource "google_compute_instance_template" "this" {
-  # tags = module.label.tags
   labels = {
-    environment = module.label.environment,
-    namespace   = module.label.namespace,
-    stage       = module.label.stage
+    environment = var.environment,
+    namespace   = var.namespace,
+    stage       = var.stage
   }
 
   machine_type = var.instance_type
@@ -99,7 +88,7 @@ resource "google_compute_instance_template" "this" {
   }
 
   metadata = {
-    ssh-keys = "ubuntu:${var.public_key}"
+    ssh-keys = "ubuntu:${local.public_key}"
   }
 
   metadata_startup_script = module.user_data.user_data

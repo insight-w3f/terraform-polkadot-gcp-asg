@@ -1,0 +1,49 @@
+gcp_instance_family_:
+  type: list
+  message: What instance family do you want to run?
+  choices:
+    - n2
+    - n2d
+    - c2
+
+gcp_available_instances_:
+  type: gcp_instance_types
+  region: "{{ nuki.region }}"
+  zone: "{{ nuki.zone }}"
+  gcp_project: "{{ nuki.gcp_project }}"
+  instance_families: ["{{ nuki.gcp_instance_family_ }}"]
+
+instance_type:
+  type: list
+  message: What type of data instances do you want to create?
+  choices: "{{ nuki.gcp_available_instances_ }}"
+
+autoscale_enabled:
+  type: confirm
+  message: Do you want to enable autoscaling?
+  default: yes
+
+min_instances:
+  type: input
+  message: Minimum number of instances for autoscaling group >>
+  default: 1
+  when: "{{ nuki.autoscale_enabled }}"
+
+max_instances:
+  type: input
+  message: Maximum number of instances for autoscaling group >>
+  default: 10
+  when: "{{ nuki.autoscale_enabled }}"
+
+num_instances:
+  type: input
+  message: Number of instances to create >>
+  default: 3
+  when: "{{ not nuki.autoscale_enabled }}"
+
+tf_variables_:
+  type: terraform_variables
+  variables_file: variables.tf
+  merge: true
+  var_list:
+    - root_volume_size
