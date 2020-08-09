@@ -61,6 +61,10 @@ module "packer" {
   }
 }
 
+locals {
+  public_key = var.public_key != "" ? var.public_key : file(var.public_key_path)
+}
+
 module "user_data" {
   source              = "github.com/insight-w3f/terraform-polkadot-user-data.git?ref=master"
   cloud_provider      = "gcp"
@@ -99,7 +103,7 @@ resource "google_compute_instance_template" "this" {
   }
 
   metadata = {
-    ssh-keys = "ubuntu:${var.public_key}"
+    ssh-keys = "ubuntu:${local.public_key}"
   }
 
   metadata_startup_script = module.user_data.user_data

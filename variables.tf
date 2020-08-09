@@ -124,6 +124,13 @@ variable "instance_type" {
 variable "public_key" {
   description = "The public ssh key"
   type        = string
+  default     = ""
+}
+
+variable "public_key_path" {
+  description = "The public ssh key"
+  type        = string
+  default     = ""
 }
 
 variable "num_instances" {
