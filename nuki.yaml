@@ -4,6 +4,9 @@ print_:
   type: print
   statement: Configuring Polkadot GCP Auto-Scaling Group
 
+###############
+# Instance Type
+###############
 instance_family_:
   type: select
   # TODO: Make sure the instances are available in the region
@@ -26,6 +29,9 @@ instance_type:
   message: What type of data instances do you want to create?
   choices: "{{ nuki.gcp_available_instances_ }}"
 
+#############
+# Autoscaling
+#############
 autoscale_enabled:
   type: confirm
   message: Do you want to enable autoscaling?
@@ -47,6 +53,10 @@ max_instances:
   message: Number of instances to create >>
   default: 10
   when: "{{ nuki.autoscale_enabled }}"
+
+use_lb:
+  type: confirm
+  message: Do you want to create a load balancer?
 
 #tf_variables_:
 #  type: terraform_variables
