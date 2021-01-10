@@ -19,15 +19,15 @@ instance_family_:
 
 gcp_available_instances_:
   type: gcp_instance_types
-  zone: "{{ nuki.azs[0] }}"
-  gcp_project: "{{ nuki.project }}"
+  zone: "{{ azs[0] }}"
+  gcp_project: "{{ project }}"
   instance_families:
-    - "{{ nuki.instance_family_ }}"
+    - "{{ instance_family_ }}"
 
 instance_type:
   type: select
   message: What type of data instances do you want to create?
-  choices: "{{ nuki.gcp_available_instances_ }}"
+  choices: "{{ gcp_available_instances_ }}"
 
 #############
 # Autoscaling
@@ -40,19 +40,19 @@ num_instances:
   type: input
   message: Number of instances to create >>
   default: 1
-  when: "{{ not nuki.autoscale_enabled }}"
+  when: "{{ not autoscale_enabled }}"
 
 min_instances:
   type: input
   message: Number of instances to create >>
   default: 1
-  when: "{{ nuki.autoscale_enabled }}"
+  when: "{{ autoscale_enabled }}"
 
 max_instances:
   type: input
   message: Number of instances to create >>
   default: 10
-  when: "{{ nuki.autoscale_enabled }}"
+  when: "{{ autoscale_enabled }}"
 
 use_lb:
   type: confirm
